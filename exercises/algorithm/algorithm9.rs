@@ -2,7 +2,6 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -37,7 +36,20 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        //TODO
+
+        self.items.push(value);
+        // 对动态数组进行排序
+        for i in 1..self.items.len()-1 {
+            for j in i..self.items.len() {
+                if (self.comparator)(&self.items[i], &self.items[j]) {
+                    self.items.swap(i, j);
+                }
+            }
+        }
+
+
+        self.count += 1;
+
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -85,7 +97,12 @@ where
 
     fn next(&mut self) -> Option<T> {
         //TODO
-		None
+        if self.len() == 0{
+            None
+        } else {
+            self.items.pop()
+        }
+        
     }
 }
 
